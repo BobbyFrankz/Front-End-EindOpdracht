@@ -3,6 +3,7 @@ EindopdrachtBootcamp FSD
 De bootcamp Full Stack Developer behandelt zowel de leerlijn Backend als de leerlijn Frontend. Om de bootcamp af te ronden dien je de volgende leeruitkomsten aan te tonen:
 
 Frontend
+
 1. HTML & CSS
 De student bouwt statische webpagina’s met HTML, voorziet deze van styling en layout door CSS en ontwerpt een prototype in Figma waarmee hij een visueel design omzet naar een webpagina.
 
@@ -13,6 +14,7 @@ De student schrijft en test schone, gestructureerde JavaScriptcode waarmee hij w
 De student bouwt een interactieve en modulaire webapplicatie in React en maakt hierbij gebruik van herbruikbare interface elementen, state management en de life cycles van React.
 
 Backend
+
 4. Java Programming
 De student programmeert in Java, waarbij hij OOP-structuren toepast. Hierbij past de student automatisch testen toe en beheert hij externe code met behulp van Maven, waardoor men in een team aan Java-projecten kan werken.
 
