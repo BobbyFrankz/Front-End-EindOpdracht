@@ -1,0 +1,104 @@
+.navbar {
+    background-image: linear-gradient(90deg, rgb(180, 116, 253), rgb(84, 0, 149));
+    height: 74px;
+}
+
+.navbar nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 5px;
+
+}
+
+
+.mobile-menu,
+.menu {
+    display: flex;
+    flex-direction: row;
+    gap: 2em;
+    list-style: none;
+
+
+}
+
+.navbar a {
+    color: #ffffff;
+}
+
+.login {
+    text-decoration: none;
+    margin-right : 100px
+
+}
+
+.link--default {
+    text-decoration: none;
+
+}
+
+.link--active {
+    text-decoration: underline;
+    text-decoration-thickness: 7px;
+    text-underline-offset: 12px;
+    margin-top: 5px;
+
+
+}
+
+.toggle-menu,
+.mobile-login {
+    display: none;
+}
+
+@media screen and (max-width: 767px) {
+    .menu a,
+    .login {
+        display: none;
+    }
+
+    .toggle-menu,
+    .mobile-login {
+        display: block;
+        color: #ffffff;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+    }
+
+    .mobile-menu {
+        position: absolute;
+        top: 74px;
+        left: 15px;
+
+        display: flex;
+        flex-direction: column;
+        gap: 1.5em;
+
+        background-color: #171128;
+        padding: 3em 2em;
+
+    }
+
+    .mobile-menu li {
+        list-style-type: none;
+
+    }
+}
+.material-symbols-outlined {
+    margin-right: 25px;
+
+
+}
+nav a {
+    font-size: 1.7em;
+    box-shadow: inset 0 0 0 0 #000000;
+    color: #cbb4e3;
+
+    border-radius: 30px;
+}
+
+
+
+
