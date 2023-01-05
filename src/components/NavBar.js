@@ -39,6 +39,11 @@ function NavBar() {
                             <NavLink className={({isActive}) => isActive ? "link--active" : "link--default"}
                                      to="/contact">Contact</NavLink>
                         </li>
+                        <form className="search-box">
+                            <input type="text" placeholder=" "/>
+                            <button type="reset"></button>
+                        </form>
+
                     </ul>
                     <ul>
                         <Link  className="login" to="signin">Login</Link>

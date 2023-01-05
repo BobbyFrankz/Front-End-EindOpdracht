@@ -5,14 +5,14 @@ import './LogIn.css';
 function LogIn() {
     return (
         <>
-            <form action="action_page.php">
+            <form action="profile">
                 <div className="container">
                     <h1>Log in</h1>
                     <p>Please fill in this form to Log In.</p>
 
 
-                    <label htmlFor="email"><b>Email</b></label>
-                    <input type="text" placeholder="Enter Email" name="email" id="email" required/>
+                    <label htmlFor="username"><b>Username</b></label>
+                    <input type="text" placeholder="Enter Username" name="username" id="username" required/>
 
                     <label htmlFor="psw"><b>Password</b></label>
                     <input type="password" placeholder="Enter Password" name="psw" id="psw" required/>

@@ -1,10 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../GlobalCss.css';
+import vocaly from '../../assets/vocaly.PNG'
+import './Home.css';
 
 function Home() {
     return (
         <>
+            <img className={"vocaly-image"} src={vocaly} alt="vocaly.PNG"/>
             <section className={"outer-container"}>
             <div className={"inner-container"}>
             <h1>Homepage</h1>
