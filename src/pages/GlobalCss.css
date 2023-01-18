@@ -1,13 +1,70 @@
-.outer-container{
+.input-choose-file {
+    font-size: 40px;
+    margin-left: 29px;
+
+}
+.logbutton {
+    margin-left: 29px;
+}
+
+.file-upload-button {
+font-size: 200px;
 
 
 }
+.single-upload__container {
 
-.inner-container{
-    margin-left: 20px;
-    margin-right: 10px;
+    margin-top: 200px;
+}
+.upload-container {
+    display: flex;
+    justify-content: center;
+    background-color: rgba(189, 97, 251, 0.14);
+    border-radius: 400px;
+}
+.upload-inner-container {
+ padding-left: 280px;
 
+}
 
+.more-upload-text {
+    padding-right: 100px;
+}
 
+.logbutton2 {
+
+    align-items: center;
+    background-image: linear-gradient(144deg, #AF40FF, #5B42F3 50%, #000000);
+
+    border-radius: 8px;
+    box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    display: flex;
+    font-size: 20px;
+    justify-content: center;
+    line-height: 1em;
+    height: 38px;
+    min-width: 140px;
+    max-width: 140px;
+    padding: 3px;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    cursor: pointer;
+
+}
+.loggbutton2-direction {
+
+    padding-left: 200px;
+    padding-top: 25px;
+
+}
+
+div.content {
+    background-color: rgba(91, 66, 243, 0.03);
+    padding-bottom: 1000px;
 
 }

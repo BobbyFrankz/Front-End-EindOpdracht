@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
 import './SignUp.css';
 import axios from "axios";
+import logIn from "../login/LogIn";
 
 
 
@@ -10,15 +11,25 @@ import axios from "axios";
 function SignUp() {
     const [accountData, setAccountData] = useState([]);
     const [error, setError] = useState(false);
+    const [value, setValue] = useState(false);
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [enabled] = useState(true);
     const [apikey] = useState("");
     const [email, setEmail] = useState("");
+    const [artistOrProducer, isArtistOrProducer] = useState(false);
     const url = "http://localhost:8080"
 
+    function handleChange(event) {
+        isArtistOrProducer(true);
+    }
+    function handleChange1(event) {
+        isArtistOrProducer( false);
+    }
 
     async function fetchData() {
+
+
 
         try {
             const { data } = await axios.post(`${url}/users`, {
@@ -26,7 +37,8 @@ function SignUp() {
                 password: password,
                 enabled: enabled,
                 apikey: apikey,
-                email: email
+                email: email,
+                artistOrProducer : artistOrProducer
             });
             setAccountData(data);
             console.log(data)
@@ -34,7 +46,6 @@ function SignUp() {
             console.error(e);
             setError(true);
         }
-
     }
 
     return (
@@ -56,20 +67,20 @@ function SignUp() {
                                 <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat"
                                        required/>
 
-                    {/*<p>Select if you are an Artist or a producer</p>*/}
-                    {/*<div className="wrapper">*/}
+                    <p>Select if you are an Artist or a producer</p>
+                    <div className="wrapper">
 
-                    {/*        <input type="radio" name="select" id="option-1" checked/>*/}
-                    {/*            <label htmlFor="option-1" className="option option-1"/>*/}
-                    {/*                <div className="dot"></div>*/}
-                    {/*                <span>Artist</span>*/}
+                            <input type="radio" name="select" id="option-1"  value={artistOrProducer} onChange={handleChange} required/>
+                                <label htmlFor="option-1" className="option option-1"/>
+                                    <div className="dot"></div>
+                                    <span>Artist</span>
 
-                    {/*    <input type="radio" name="select" id="option-2"/>*/}
-                    {/*            <label htmlFor="option-2" className="option option-2"/>*/}
-                    {/*                <div className="dot"></div>*/}
-                    {/*                <span>Producer/DJ</span>*/}
+                        <input type="radio" name="select" id="option-2"  value={artistOrProducer} onChange={handleChange1} required/>
+                                <label htmlFor="option-2" className="option option-2"/>
+                                    <div className="dot"></div>
+                                    <span>Producer/DJ</span>
 
-                    {/*</div>*/}
+                    </div>
 
 
                                         <p>By creating an account you agree to our <a href="src/pages/signup/SignUp#">Terms & Privacy</a>.</p>

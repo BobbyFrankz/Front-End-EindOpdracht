@@ -1,8 +1,16 @@
 @import url("https://fonts.googleapis.com/css?family=Raleway:400,400i,700");
 
+
+.nav-container{
+    padding-bottom: 70px;
+
+}
 .navbar {
     background-image: linear-gradient(90deg, rgb(180, 116, 253), rgb(84, 0, 149));
     height: 74px;
+    position: fixed;
+    top: 0px;
+    width: 100%;
 }
 
 .navbar nav {
@@ -30,11 +38,6 @@
     color: #ffffff;
 }
 
-.login {
-    text-decoration: none;
-    margin-right : 100px
-
-}
 
 .link--default {
     text-decoration: none;
@@ -89,80 +92,52 @@
 
     }
 }
+
 .material-symbols-outlined {
     margin-right: 25px;
 
 
-
 }
+
 nav a {
     font-size: 1.7em;
 
 }
 
 
-.search-box {
+
+
+.logbutton {
+
+    align-items: center;
+    background-image: linear-gradient(144deg, #AF40FF, #5B42F3 50%, #000000);
+
+    border-radius: 8px;
+    box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    display: flex;
     font-size: 20px;
-    display: inline-block;
-    position: relative;
-    align-content: center;
-    border-radius: 2.5em;
-   margin-bottom: 10px;
-    flex-wrap: wrap;
+    justify-content: center;
+    line-height: 1em;
+    height: 38px;
+    min-width: 140px;
+    padding: 3px;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    cursor: pointer;
 
 }
-.search-box input[type=text] {
-    font-family: inherit;
-    font-weight: bold;
-    width: 2.5em;
-    height: 2.5em;
-    padding: 0.3em 2.1em 0.3em 0.4em;
-    border: none;
-    box-sizing: border-box;
-    border-radius: 2.5em;
-    transition: width 800ms cubic-bezier(0.68, -0.55, 0.27, 1.55) 150ms;
+
+.upload-text {
+
+    font-size: 12px;
+    margin-top: 5px;
+
 }
-.search-box input[type=text]:focus {
-    outline: none;
-}
-.search-box input[type=text]:focus, .search-box input[type=text]:not(:placeholder-shown) {
-    width: 18em;
-    transition: width 800ms cubic-bezier(0.68, -0.55, 0.27, 1.55);
-}
-.search-box input[type=text]:focus + button[type=reset], .search-box input[type=text]:not(:placeholder-shown) + button[type=reset] {
-    transform: rotate(-45deg) translateY(0);
-    transition: transform 150ms ease-out 800ms;
-}
-.search-box input[type=text]:focus + button[type=reset]:after, .search-box input[type=text]:not(:placeholder-shown) + button[type=reset]:after {
-    opacity: 1;
-    transition: top 150ms ease-out 950ms, right 150ms ease-out 950ms, opacity 150ms ease 950ms;
-}
-.search-box button[type=reset] {
-    background-color: transparent;
-    width: 1.4em;
-    height: 1.4em;
-    border: 0;
-    padding: 0;
-    outline: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    top: 0.55em;
-    right: 0.55em;
-    transform: rotate(-45deg) translateY(2.2em);
-    transition: transform 150ms ease-out 150ms;
-}
-.search-box button[type=reset]:before, .search-box button[type=reset]:after {
-    content: "";
-    background-color: #000000;
-    width: 0.3em;
-    height: 1.4em;
-    position: absolute;
-}
-.search-box button[type=reset]:after {
-    transform: rotate(90deg);
-    opacity: 0;
-    transition: transform 150ms ease-out, opacity 150ms ease-out;
-}
+
+
 

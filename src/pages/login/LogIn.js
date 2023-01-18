@@ -1,8 +1,40 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, {useContext, useState} from 'react';
+import {useNavigate} from 'react-router-dom';
 import './LogIn.css';
+import axios from "axios";
+import {AuthContext} from "../../context/AuthContext";
+
 
 function LogIn() {
+    const navigate = useNavigate();
+    const url = "http://localhost:8080"
+    const { login, username, setUsername } = useContext(AuthContext);
+    const [error, setError] = useState(false);
+    const [password, setPassword] = useState("");
+    const {isAuth} = useContext(AuthContext)
+
+    const signIn = async  (e) => {
+        e.preventDefault();
+
+        try {
+            const  response  = await axios.post(`${url}/authenticate`,{
+                username: username,
+                password: password
+        });
+        if (response.status === 200){
+            console.log(response)
+            login(response.data.jwt);
+            navigate('/profile');
+        }
+
+    } catch(e) {
+        console.error(e);
+        setError(true);
+    }
+
+
+}
+
     return (
         <>
             <form action="profile">
@@ -12,14 +44,27 @@ function LogIn() {
 
 
                     <label htmlFor="username"><b>Username</b></label>
-                    <input type="text" placeholder="Enter Username" name="username" id="username" required/>
+                    <input
+                        type="text"
+                        placeholder="Enter Username"
+                        name="username"
+                        id="username"
+                        onChange={(e) => setUsername(e.target.value)}
+                        required/>
 
                     <label htmlFor="psw"><b>Password</b></label>
-                    <input type="password" placeholder="Enter Password" name="psw" id="psw" required/>
+                    <input
+                        type="password"
+                        placeholder="Enter Password"
+                        name="psw"
+                        id="psw"
+                        onChange={(e) => setPassword(e.target.value)}
+                        required/>
+
 
 
                     <p>By creating an account you agree to our <a href="src/pages/login/LogIn#">Terms & Privacy</a>.</p>
-                    <button type="submit" className="registerbtn">Log In</button>
+                    <button type="submit" onClick={signIn} className="registerbtn">Log In</button>
                 </div>
 
                 <div className="container signin">
