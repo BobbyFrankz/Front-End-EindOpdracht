@@ -1,3 +1,15 @@
 .container-profile {
-   margin-bottom: 1100px;
+
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-direction: column;
+   background-color: rgba(157, 66, 243, 0.04);
+   border-radius: 50px;
+}
+
+picture img {
+   transform: scale(0.7);
+
+
 }

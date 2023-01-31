@@ -1,6 +1,10 @@
+
+
 .input-choose-file {
     font-size: 40px;
-    margin-left: 29px;
+
+
+    margin-top: 20px;
 
 }
 .logbutton {
@@ -23,7 +27,12 @@ font-size: 200px;
     border-radius: 400px;
 }
 .upload-inner-container {
- padding-left: 280px;
+
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding-left: 220px;
+    align-items: start;
 
 }
 
@@ -58,13 +67,22 @@ font-size: 200px;
 }
 .loggbutton2-direction {
 
-    padding-left: 200px;
-    padding-top: 25px;
+    padding-left: 180px;
+    padding-top: 20px;
 
 }
 
-div.content {
-    background-color: rgba(91, 66, 243, 0.03);
-    padding-bottom: 1000px;
+
+
+.inputs-info {
+    display: flex;
+    flex-direction: column;
+    max-width: 100px;
+
+
+}
+.info-field {
+    display: flex;
+    margin-bottom: 20px;
 
 }

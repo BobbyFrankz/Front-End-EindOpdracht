@@ -8,7 +8,8 @@ import {AuthContext} from "../../context/AuthContext";
 function LogIn() {
     const navigate = useNavigate();
     const url = "http://localhost:8080"
-    const { login, username, setUsername } = useContext(AuthContext);
+    const { login } = useContext(AuthContext);
+    const [username, setUsername] = useState("")
     const [error, setError] = useState(false);
     const [password, setPassword] = useState("");
     const {isAuth} = useContext(AuthContext)
@@ -24,7 +25,7 @@ function LogIn() {
         if (response.status === 200){
             console.log(response)
             login(response.data.jwt);
-            navigate('/profile');
+
         }
 
     } catch(e) {
@@ -37,8 +38,8 @@ function LogIn() {
 
     return (
         <>
-            <form action="profile">
-                <div className="container">
+            <form >
+                <div className="form-container">
                     <h1>Log in</h1>
                     <p>Please fill in this form to Log In.</p>
 

@@ -81,11 +81,13 @@ function AuthContextProvider({ children }) {
 
     function login( jwt ) {
         console.log('Gebruiker is ingelogd!');
-        setAuth({
-            ...auth,
-            isAuth: true,
-            status: "done"
-        })
+        const decodedToken = jwt_decode(jwt)
+        // setAuth({
+        //     ...auth,
+        //     isAuth: true,
+        //     status: "done"
+        // })
+        void fetchUserData(jwt, decodedToken.sub, "/profile" )
         localStorage.setItem('token', jwt)
 
 
@@ -103,14 +105,12 @@ function AuthContextProvider({ children }) {
     }
 
     const contextData = {
-        username,
-        setUsername,
-        auth,
         status: auth.status,
         isAuth: auth.isAuth,
         login: login,
         logout: logout,
         fetchUserData,
+        user: auth.user,
         data
     };
 

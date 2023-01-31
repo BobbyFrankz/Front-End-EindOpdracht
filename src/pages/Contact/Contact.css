@@ -1,3 +1,12 @@
 .container-contact {
     margin-bottom: 1100px;
 }
+.inner-container-contact {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+.inner-text-contact {
+    max-width: 1000px;
+}

@@ -36,13 +36,10 @@ function NavBar() {
                              <NavLink className={({isActive}) => isActive ? "link--active" : "link--default"}
                                      to="/">Home</NavLink>
                         </li>
+
                         <li>
-                            <NavLink className={({isActive}) => isActive ? "link--active" : "link--default"}
-                                     to="/about">About</NavLink>
-                        </li>
-                        <li>
-                            <NavLink className={({isActive}) => isActive ? "link--active" : "link--default"}
-                                     to="/contact">Contact</NavLink>
+                            {isAuth && <NavLink className={({isActive}) => isActive ? "link--active" : "link--default"}
+                                     to="/contact">Contact</NavLink>}
                         </li>
                         <li>
                             {isAuth && <NavLink className={({isActive}) => isActive ? "link--active" : "link--default"}

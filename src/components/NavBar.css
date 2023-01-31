@@ -4,6 +4,7 @@
 .nav-container{
     padding-bottom: 70px;
 
+
 }
 .navbar {
     background-image: linear-gradient(90deg, rgb(180, 116, 253), rgb(84, 0, 149));
@@ -11,6 +12,7 @@
     position: fixed;
     top: 0px;
     width: 100%;
+    z-index: 2;
 }
 
 .navbar nav {
