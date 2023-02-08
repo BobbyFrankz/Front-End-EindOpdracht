@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react';
 import VocalComponent from "../../components/VocalComponent";
 import axios from "axios";
 import './Vocals.css';
+import vocaly from '../../assets/vocaly.PNG'
+import RatingComponent from "../../components/RatingComponent";
 
 
 function Vocals({name, test}) {
@@ -10,19 +12,23 @@ function Vocals({name, test}) {
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const [audio] = useState(new Audio(data))
-
+    const [uploadMessage, setUploadMessage] = useState('');
+    const jwt = localStorage.getItem('token')
+    const url = "http://localhost:8080"
 
 
     useEffect(() => {
         async function fetchData() {
             setIsLoading(true);
-            console.log("useEffect triggered1")
             try {
 
-                const response = await axios.get("http://localhost:8080/files");
+                const response = await axios.get("http://localhost:8080/files", {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                        Authorization : `Bearer ${jwt}`
+                    }
+                });
                 setData(response.data);
-                console.log(response.data);
-                console.log("useEffect triggered2")
             } catch (e) {
                 setError(e);
         } finally {
@@ -31,6 +37,7 @@ function Vocals({name, test}) {
         }
         fetchData();
     }, []);
+
 
     const loading = () => {
         return (
@@ -56,6 +63,8 @@ function Vocals({name, test}) {
                 </div>
             <div className={"loading-text"}>
                 <p>This can take a little time, so please wait :)</p>
+                <p>If the page does not load, it could mean that there arent any vocals in the database.</p>
+                <img src={vocaly} className={"vocaly-loading-image"} alt=""/>
             </div>
             </>
 
@@ -68,26 +77,11 @@ function reload() { window.location.href = "/vocals" }
             {Object.keys(data).length > 0  ?  <ul className={"vocal-list"}>
                 {data.map((vocal, i) => {
                     return (
-
                         <VocalComponent key={i} vocal={vocal}/>
+
                     )
                 })}
             </ul> : loading() }
-            {/*{isLoading && loading()}*/}
-        {/*<div className="vocal-container">*/}
-        {/*    <p>You can download vocals by pressing on the 3 dots next to the volume.</p>*/}
-        {/*    <p>You can also adjust the playback speed.</p>*/}
-
-        {/*    /!*<ul className={"vocal-list"}>*!/*/}
-        {/*    /!*    {data.map((vocal) => {*!/*/}
-        {/*    /!*        return (*!/*/}
-        {/*    */}
-        {/*    /!*            <VocalComponent key={data.id} vocal={vocal}/>*!/*/}
-        {/*    /!*        )*!/*/}
-        {/*    /!*    })}*!/*/}
-        {/*    /!*</ul>*!/*/}
-
-        {/*</div>*/}
         </>
     );
 }

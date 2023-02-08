@@ -10,3 +10,11 @@
 .inner-text-contact {
     max-width: 1000px;
 }
+
+.contact-form-container {
+    display: flex;
+    justify-content: center;
+    padding-top: 100px;
+    font-size: 50px;
+
+}

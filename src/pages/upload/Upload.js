@@ -12,7 +12,7 @@ function Upload() {
     const [artist, setArtist] = useState('');
     const url = "http://localhost:8080"
     const {handleSubmit} = useForm();
-
+    const jwt = localStorage.getItem('token')
     async function handleFormSubmit() {
         try {
             // Create a FormData object to store the file data
@@ -24,7 +24,8 @@ function Upload() {
             // Send the post request using axios
             let response = await axios.post(`${url}/upload`, formData, {
                 headers: {
-                    "Content-Type": "multipart/form-data"
+                    "Content-Type": "multipart/form-data",
+                    Authorization : `Bearer ${jwt}`
                 }
             });
             setData(response.data);

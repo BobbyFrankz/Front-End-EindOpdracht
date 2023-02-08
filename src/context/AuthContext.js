@@ -82,11 +82,6 @@ function AuthContextProvider({ children }) {
     function login( jwt ) {
         console.log('Gebruiker is ingelogd!');
         const decodedToken = jwt_decode(jwt)
-        // setAuth({
-        //     ...auth,
-        //     isAuth: true,
-        //     status: "done"
-        // })
         void fetchUserData(jwt, decodedToken.sub, "/profile" )
         localStorage.setItem('token', jwt)
 

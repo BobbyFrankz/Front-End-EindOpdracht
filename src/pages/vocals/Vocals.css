@@ -157,3 +157,7 @@ svg.tea #steamR {
     font-size: 100px;
 
 }
+.vocaly-loading-image {
+    border-radius: 400px;
+   box-shadow: rgba(0, 0, 0, 0.19) 5px 10px 15px;
+}

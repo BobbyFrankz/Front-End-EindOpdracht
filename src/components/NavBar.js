@@ -39,15 +39,15 @@ function NavBar() {
 
                         <li>
                             {isAuth && <NavLink className={({isActive}) => isActive ? "link--active" : "link--default"}
-                                     to="/contact">Contact</NavLink>}
-                        </li>
-                        <li>
-                            {isAuth && <NavLink className={({isActive}) => isActive ? "link--active" : "link--default"}
                                      to="/vocals">Vocals</NavLink>}
                         </li>
                         <li>
                             {isAuth && <NavLink className={({isActive}) => isActive ? "link--active" : "link--default"}
                                      to="/profile">Profile</NavLink>}
+                        </li>
+                        <li>
+                            {isAuth && <NavLink className={({isActive}) => isActive ? "link--active" : "link--default"}
+                                                to="/contact">Contact</NavLink>}
                         </li>
                         <li className={"upload-text"}>
                             {isAuth && <NavLink className={({isActive}) => isActive ? "link--active" : "link--default"}

@@ -5,6 +5,7 @@ import './SignUp.css';
 import axios from "axios";
 import logIn from "../login/LogIn";
 import {useForm} from "react-hook-form";
+import vocaly from '../../assets/vocaly.PNG'
 
 
 function SignUp() {
@@ -130,11 +131,11 @@ function SignUp() {
                            onChange={(e) => setRepeatPassword(e.target.value)} required/>
 
                     <section className={"upload-image"}>
-                        <h2>Upload a Profile photo (REQUIRED)</h2>
+                        <h2>Upload a Profile photo (OPTIONAL)</h2>
                         <input onChange={handleImageChange}
                                type="file"
                                name="file" />
-                        {preview && <img src={preview} alt="Chosen-picture"/>}
+                        {preview && <img src={preview} alt="vocaly"/>}
                         {uploadMessage && <p>{uploadMessage}</p>}
                     </section>
 
