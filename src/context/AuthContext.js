@@ -63,7 +63,8 @@ function AuthContextProvider({ children }) {
                 user: {
                     email: response.data.email,
                     id: response.data.id,
-                    username: response.data.username
+                    username: response.data.username,
+                    artistOrProducer: response.data.artistOrProducer
                 },
                 status: "done"
             })

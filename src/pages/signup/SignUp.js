@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {Link, Navigate, useNavigate} from 'react-router-dom';
 
 import './SignUp.css';
@@ -6,6 +6,7 @@ import axios from "axios";
 import logIn from "../login/LogIn";
 import {useForm} from "react-hook-form";
 import vocaly from '../../assets/vocaly.PNG'
+import {AuthContext} from "../../context/AuthContext";
 
 
 function SignUp() {
@@ -25,12 +26,14 @@ function SignUp() {
     const [file, setFile] = useState(null);
     const {handleSubmit} = useForm();
     const [uploadMessage, setUploadMessage] = useState('');
+    const [passwordMessage, setPasswordMessage] = useState('');
     const [uploadMessageArtistOrProducer, setUploadMessageArtistOrProducer] = useState('');
     const [uploadMessageUserName, setUploadMessageUserName] = useState('');
     const [preview, setPreview] = useState('')
     const [artistSelected, setArtistSelected] = useState(false);
     const [producerSelected, setProducerSelected] = useState(false);
     const url = "http://localhost:8080"
+    const { user , fetchUserData} = useContext(AuthContext);
 
     const validateEmail = () => {
         const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -42,29 +45,45 @@ function SignUp() {
         return true;
     };
 
+
     const handleArtistChange = () => {
         setArtistSelected(true);
         setProducerSelected(false);
+        setArtistOrProducer(true)
     };
 
     const handleProducerChange = () => {
         setArtistSelected(false);
         setProducerSelected(true);
+        setArtistOrProducer(false)
     };
+
 
     async function onSubmit(event) {
         event.preventDefault();
         if (password !== repeatPassword) {
             setUploadMessage('Passwords do not match!');
             return;
+        } else if (password.length < 8) {
+            setPasswordMessage("Password must be at least 8 characters long");
+            return;
+        } else if (!password.match(/[!@#$%^&*(),.?":{}|<>]/)) {
+            setPasswordMessage('Password must contain at least one special character (!, @, #, $, %, ^, &, *, (, ), ., ?, :, {, }, <, or >)');
+            return;
         } else if (!password) {
-                setUploadMessage('Please fill in a password');
-                return;
+            setUploadMessage('Please fill in a password');
+            return;
         } else if (!username) {
             setUploadMessageUserName('Please fill in a username');
             return;
+        } else if (username === "admin") {
+            setUploadMessageUserName('You cant use this username try another one');
+            return;
+        } else if (username === "user") {
+            setUploadMessageUserName('You cant use this username try another one');
+            return;
         } else if (!artistSelected && !producerSelected) {
-        setUploadMessageArtistOrProducer("Please Select if you are a artist or producer!")
+            setUploadMessageArtistOrProducer("Please Select if you are a artist or producer!")
             return;
         } else {
             setError(false);
@@ -73,18 +92,17 @@ function SignUp() {
 
         try {
             const {data} = await axios.post(`${url}/users`, {
-                    username: username,
-                    password: password,
-                    enabled: enabled,
-                    apikey: apikey,
-                    email: email,
-                    artistOrProducer: artistOrProducer
+                username: username,
+                password: password,
+                enabled: enabled,
+                apikey: apikey,
+                email: email,
+                artistOrProducer: artistOrProducer
 
             });
             void await HandleImageSubmit()
             setAccountData(data);
-            console.log(data)
-           navigate("/signin")
+            navigate("/signin")
 
         } catch (e) {
             console.error(e);
@@ -106,19 +124,17 @@ function SignUp() {
                     "Content-Type": "multipart/form-data"
                 }
             });
-            console.log(response)
             setData(response.data);
             setUploadMessage("File uploaded successfully!");
 
         } catch (error) {
             setUploadMessage("Error: " + error);
-            console.error(error);
         }
     }
 
     function handleImageChange(e) {
         let file = e.target.files[0]
-            setFile(file)
+        setFile(file)
         setPreview(URL.createObjectURL(file))
 
     }
@@ -136,7 +152,7 @@ function SignUp() {
                            name="username" id="username"
                            value={username}
                            onChange={(e) => setUsername(e.target.value)} required/>
-                    {uploadMessageUserName && <div style={{ color: "red" }}>{uploadMessageUserName}</div>}
+                    {uploadMessageUserName && <div style={{color: "red"}}>{uploadMessageUserName}</div>}
 
                     <label htmlFor="email"><b>Email</b></label>
                     <input type="email"
@@ -145,8 +161,8 @@ function SignUp() {
                            value={email}
                            onChange={(e) => setEmail(e.target.value)}
                            onBlur={validateEmail}
-                           required />
-                    {emailError && <div style={{ color: "red" }}>{emailError}</div>}
+                           required/>
+                    {emailError && <div style={{color: "red"}}>{emailError}</div>}
 
                     <label htmlFor="psw"><b>Password</b></label>
                     <input type="password"
@@ -154,6 +170,7 @@ function SignUp() {
                            name="psw" id="psw"
                            value={password}
                            onChange={(e) => setPassword(e.target.value)} required/>
+                    {passwordMessage ? <div style={{color: "red"}}>{passwordMessage}</div> : null}
 
 
                     <label htmlFor="psw-repeat"><b>Repeat Password</b></label>
@@ -163,13 +180,13 @@ function SignUp() {
                            id="psw-repeat"
                            value={repeatPassword}
                            onChange={(e) => setRepeatPassword(e.target.value)} required/>
-                    {uploadMessage ? <div style={{ color: "red" }}>{uploadMessage}</div> : null}
+                    {uploadMessage ? <div style={{color: "red"}}>{uploadMessage}</div> : null}
 
                     <section className={"upload-image"}>
                         <h2>Upload a Profile photo (OPTIONAL)</h2>
                         <input onChange={handleImageChange}
                                type="file"
-                               name="file" />
+                               name="file"/>
                         {preview && <img src={preview} alt="vocaly"/>}
                     </section>
                     <h2>Select if you are an Artist or a producer</h2>
@@ -182,8 +199,8 @@ function SignUp() {
                             onChange={handleArtistChange}
                             required
                         />
-                        <label htmlFor="option-1" className="option option-1" />
-                        <div className="dot" />
+                        <label htmlFor="option-1" className="option option-1"/>
+                        <div className="dot"/>
                         <span>Artist</span>
 
                         <input
@@ -194,10 +211,11 @@ function SignUp() {
                             onChange={handleProducerChange}
                             required
                         />
-                        <label htmlFor="option-2" className="option option-2" />
-                        <div className="dot" />
+                        <label htmlFor="option-2" className="option option-2"/>
+                        <div className="dot"/>
                         <span>Producer</span>
-                        {uploadMessageArtistOrProducer ? <div style={{ color: "red" }}>{uploadMessageArtistOrProducer}</div> : null}
+                        {uploadMessageArtistOrProducer ?
+                            <div style={{color: "red"}}>{uploadMessageArtistOrProducer}</div> : null}
                     </div>
                     <p>By creating an account, you agree to our <a href="#">Terms & Privacy</a>.</p>
                     <button type="submit" onClick={onSubmit} className="registerbtn">Register</button>

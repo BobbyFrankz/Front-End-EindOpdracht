@@ -5,6 +5,7 @@ import {useForm} from "react-hook-form";
 
 function Upload() {
     const [uploadMessage, setUploadMessage] = useState('');
+    const [fieldUploadMessage, setFieldUploadMessage] = useState('');
     const [data, setData] = useState([]);
     const [file, setFile] = useState(null);
     const [genre, setGenre] = useState('');
@@ -13,7 +14,12 @@ function Upload() {
     const url = "http://localhost:8080"
     const {handleSubmit} = useForm();
     const jwt = localStorage.getItem('token')
+
     async function handleFormSubmit() {
+        if (!genre || !bpm || !artist) {
+            setFieldUploadMessage("Error: All fields are required if it doesnt work refresh the page and fill in all fields");
+            return;
+        }
         try {
             // Create a FormData object to store the file data
             const formData = new FormData();
@@ -33,6 +39,7 @@ function Upload() {
 
         } catch (error) {
             setUploadMessage("Error: " + error);
+            setFieldUploadMessage("error" + error);
             console.error(error);
         }
     }
@@ -61,6 +68,7 @@ function Upload() {
                             <input className={"info-field"} name="genre" placeholder="GENRE" onChange={e => setGenre(e.target.value)}/>
                             <input className={"info-field"} name="bpm" placeholder="BPM" onChange={e => setBpm(e.target.value)}/>
                             <input className={"info-field"} name="artist" placeholder="ARTIST" onChange={e => setArtist(e.target.value)}/>
+                                {fieldUploadMessage && <p>{fieldUploadMessage}</p>}
                             <button  className={"logbutton2"} type="submit">Upload</button>
                             </div>
                         </form>
@@ -68,7 +76,7 @@ function Upload() {
                     {uploadMessage && <p>{uploadMessage}</p>}
 
                     <h2 className={"more-upload-text"}>1. Select choose File to Search for your vocal</h2>
-                    <h2 className={"more-upload-text"}>2. Input the genre and BPM</h2>
+                    <h2 className={"more-upload-text"}>2. Input the genre and BPM and Artist name</h2>
                 </div>
             </section>
         </>
