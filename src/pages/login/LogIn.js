@@ -16,7 +16,11 @@ function LogIn() {
 
     const signIn = async  (e) => {
         e.preventDefault();
-
+        if (!username || !password) {
+            console.error("Username and password are required");
+            setError(true);
+            return;
+        }
         try {
             const  response  = await axios.post(`${url}/authenticate`,{
                 username: username,
@@ -29,16 +33,19 @@ function LogIn() {
         }
 
     } catch(e) {
-        console.error(e);
-        setError(true);
-    }
-
+            console.error(e);
+            if (e.response.status === 404) {
+                console.error("User not found");
+                setError(true);
+            }
+        }
 
 }
 
     return (
         <>
             <form >
+
                 <div className="form-container">
                     <h1>Log in</h1>
                     <p>Please fill in this form to Log In.</p>
@@ -46,13 +53,13 @@ function LogIn() {
 
                     <label htmlFor="username"><b>Username</b></label>
                     <input
+
                         type="text"
                         placeholder="Enter Username"
                         name="username"
                         id="username"
                         onChange={(e) => setUsername(e.target.value)}
                         required/>
-
                     <label htmlFor="psw"><b>Password</b></label>
                     <input
                         type="password"
@@ -62,7 +69,7 @@ function LogIn() {
                         onChange={(e) => setPassword(e.target.value)}
                         required/>
 
-
+                    {error && <p style={{ color: "red" }}>Error: Username not found! Username and password are required</p>}
 
                     <p>By creating an account you agree to our <a href="src/pages/login/LogIn#">Terms & Privacy</a>.</p>
                     <button type="submit" onClick={signIn} className="registerbtn">Log In</button>
