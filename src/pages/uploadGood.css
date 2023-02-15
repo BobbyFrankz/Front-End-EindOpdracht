@@ -1,0 +1,88 @@
+
+
+.input-choose-file {
+    font-size: 40px;
+
+
+    margin-top: 20px;
+
+}
+.logbutton {
+    margin-left: 29px;
+}
+
+.file-upload-button {
+font-size: 200px;
+
+
+}
+.single-upload__container {
+
+    margin-top: 200px;
+}
+.upload-container {
+    display: flex;
+    justify-content: center;
+    background-color: rgba(189, 97, 251, 0.14);
+    border-radius: 400px;
+}
+.upload-inner-container {
+
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding-left: 220px;
+    align-items: start;
+
+}
+
+.more-upload-text {
+    padding-right: 100px;
+}
+
+.logbutton2 {
+
+    align-items: center;
+    background-image: linear-gradient(144deg, #AF40FF, #5B42F3 50%, #000000);
+
+    border-radius: 8px;
+    box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    display: flex;
+    font-size: 20px;
+    justify-content: center;
+    line-height: 1em;
+    height: 38px;
+    min-width: 140px;
+    max-width: 140px;
+    padding: 3px;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    cursor: pointer;
+
+}
+.loggbutton2-direction {
+
+    padding-left: 180px;
+    padding-top: 20px;
+
+}
+
+
+
+.inputs-info {
+    display: flex;
+    flex-direction: column;
+    max-width: 100px;
+
+
+}
+.info-field {
+    display: flex;
+    margin-bottom: 20px;
+
+}
