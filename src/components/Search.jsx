@@ -55,7 +55,8 @@ function Search() {
         setResults([]);
     }
         return (
-            <form className="search-box" onSubmit={handleSubmit}>
+            <form className="search-box"
+                  onSubmit={handleSubmit}>
                 <input
                     type="text"
                     value={searchTerm}
@@ -63,9 +64,13 @@ function Search() {
                     onKeyPress={handleKeyPress}
                     placeholder="Search for Users or emails"
                 />
-                <button className={"button-search"} type="submit">Search</button>
+                <button
+                    className={"button-search"}
+                    type="submit">Search</button>
                 {searchTerm !== ''  && (
-                    <button className={"button-search"} type="button" onClick={handleClear}>
+                    <button className={"button-search"}
+                            type="button"
+                            onClick={handleClear}>
                         Clear
                     </button> )}
                 {loading && <div>Loading...</div>}
