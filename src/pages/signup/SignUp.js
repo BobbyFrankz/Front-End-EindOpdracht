@@ -33,7 +33,7 @@ function SignUp() {
     const [artistSelected, setArtistSelected] = useState(false);
     const [producerSelected, setProducerSelected] = useState(false);
     const url = "http://localhost:8080"
-    const { user , fetchUserData} = useContext(AuthContext);
+    const {user, fetchUserData} = useContext(AuthContext);
 
     const validateEmail = () => {
         const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -141,90 +141,92 @@ function SignUp() {
 
     return (
         <>
-            <form>
-                <div className="form-container">
-                    <h1>Register</h1>
-                    <p>Please fill in this form to create an account.</p>
+            <main>
+                <form>
+                    <div className="form-container">
+                        <h1>Register</h1>
+                        <p>Please fill in this form to create an account.</p>
 
-                    <label htmlFor="username"><b>Username</b></label>
-                    <input type="text"
-                           placeholder="Enter Username"
-                           name="username" id="username"
-                           value={username}
-                           onChange={(e) => setUsername(e.target.value)} required/>
-                    {uploadMessageUserName && <div style={{color: "red"}}>{uploadMessageUserName}</div>}
+                        <label htmlFor="username"><b>Username</b></label>
+                        <input type="text"
+                               placeholder="Enter Username"
+                               name="username" id="username"
+                               value={username}
+                               onChange={(e) => setUsername(e.target.value)} required/>
+                        {uploadMessageUserName && <div style={{color: "red"}}>{uploadMessageUserName}</div>}
 
-                    <label htmlFor="email"><b>Email</b></label>
-                    <input type="email"
-                           placeholder="Enter Email"
-                           name="email" id="email"
-                           value={email}
-                           onChange={(e) => setEmail(e.target.value)}
-                           onBlur={validateEmail}
-                           required/>
-                    {emailError && <div style={{color: "red"}}>{emailError}</div>}
+                        <label htmlFor="email"><b>Email</b></label>
+                        <input type="email"
+                               placeholder="Enter Email"
+                               name="email" id="email"
+                               value={email}
+                               onChange={(e) => setEmail(e.target.value)}
+                               onBlur={validateEmail}
+                               required/>
+                        {emailError && <div style={{color: "red"}}>{emailError}</div>}
 
-                    <label htmlFor="psw"><b>Password</b></label>
-                    <input type="password"
-                           placeholder="Enter Password"
-                           name="psw" id="psw"
-                           value={password}
-                           onChange={(e) => setPassword(e.target.value)} required/>
-                    {passwordMessage ? <div style={{color: "red"}}>{passwordMessage}</div> : null}
+                        <label htmlFor="psw"><b>Password</b></label>
+                        <input type="password"
+                               placeholder="Enter Password"
+                               name="psw" id="psw"
+                               value={password}
+                               onChange={(e) => setPassword(e.target.value)} required/>
+                        {passwordMessage ? <div style={{color: "red"}}>{passwordMessage}</div> : null}
 
 
-                    <label htmlFor="psw-repeat"><b>Repeat Password</b></label>
-                    <input type="password"
-                           placeholder="Repeat Password"
-                           name="psw-repeat"
-                           id="psw-repeat"
-                           value={repeatPassword}
-                           onChange={(e) => setRepeatPassword(e.target.value)} required/>
-                    {uploadMessage ? <div style={{color: "red"}}>{uploadMessage}</div> : null}
+                        <label htmlFor="psw-repeat"><b>Repeat Password</b></label>
+                        <input type="password"
+                               placeholder="Repeat Password"
+                               name="psw-repeat"
+                               id="psw-repeat"
+                               value={repeatPassword}
+                               onChange={(e) => setRepeatPassword(e.target.value)} required/>
+                        {uploadMessage ? <div style={{color: "red"}}>{uploadMessage}</div> : null}
 
-                    <section className={"upload-image"}>
-                        <h2>Upload a Profile photo (OPTIONAL)</h2>
-                        <input onChange={handleImageChange}
-                               type="file"
-                               name="file"/>
-                        {preview && <img src={preview} alt="vocaly"/>}
-                    </section>
-                    <h2>Select if you are an Artist or a producer</h2>
-                    <div className="wrapper">
-                        <input
-                            type="radio"
-                            name="select"
-                            id="option-1"
-                            checked={artistSelected}
-                            onChange={handleArtistChange}
-                            required
-                        />
-                        <label htmlFor="option-1" className="option option-1"/>
-                        <div className="dot"/>
-                        <span>Artist</span>
+                        <section className={"upload-image"}>
+                            <h2>Upload a Profile photo (OPTIONAL)</h2>
+                            <input onChange={handleImageChange}
+                                   type="file"
+                                   name="file"/>
+                            {preview && <img src={preview} alt="vocaly"/>}
+                        </section>
+                        <h2>Select if you are an Artist or a producer</h2>
+                        <div className="wrapper">
+                            <input
+                                type="radio"
+                                name="select"
+                                id="option-1"
+                                checked={artistSelected}
+                                onChange={handleArtistChange}
+                                required
+                            />
+                            <label htmlFor="option-1" className="option option-1"/>
+                            <div className="dot"/>
+                            <span>Artist</span>
 
-                        <input
-                            type="radio"
-                            name="select"
-                            id="option-2"
-                            checked={producerSelected}
-                            onChange={handleProducerChange}
-                            required
-                        />
-                        <label htmlFor="option-2" className="option option-2"/>
-                        <div className="dot"/>
-                        <span>Producer</span>
-                        {uploadMessageArtistOrProducer ?
-                            <div style={{color: "red"}}>{uploadMessageArtistOrProducer}</div> : null}
+                            <input
+                                type="radio"
+                                name="select"
+                                id="option-2"
+                                checked={producerSelected}
+                                onChange={handleProducerChange}
+                                required
+                            />
+                            <label htmlFor="option-2" className="option option-2"/>
+                            <div className="dot"/>
+                            <span>Producer</span>
+                            {uploadMessageArtistOrProducer ?
+                                <div style={{color: "red"}}>{uploadMessageArtistOrProducer}</div> : null}
+                        </div>
+                        <p>By creating an account, you agree to our <a href="#">Terms & Privacy</a>.</p>
+                        <button type="submit" onClick={onSubmit} className="registerbtn">Register</button>
                     </div>
-                    <p>By creating an account, you agree to our <a href="#">Terms & Privacy</a>.</p>
-                    <button type="submit" onClick={onSubmit} className="registerbtn">Register</button>
-                </div>
 
-                <div className="container signin">
-                    <p>Already have an account? <a href={"signin"}>Sign in</a>.</p>
-                </div>
-            </form>
+                    <div className="container signin">
+                        <p>Already have an account? <a href={"signin"}>Sign in</a>.</p>
+                    </div>
+                </form>
+            </main>
         </>
     );
 }
